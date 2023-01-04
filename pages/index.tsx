@@ -1,11 +1,31 @@
 import React from "react";
 import type { NextPage } from "next";
-import { useRecoilState } from "recoil";
-import { textState } from "../context";
+import useModal from "../hooks/useModal";
+import ReactModal from "react-modal";
 
 const Main: NextPage = () => {
-  const [text] = useRecoilState(textState);
-  return <section id={`main`}>I love {text} 1.2.9</section>;
+  const [isOpen, setIsOpen] = React.useState(false);
+  return (
+    <section id={`main`}>
+      <ReactModal isOpen={isOpen}>
+        <div>안녕하세요</div>
+        <button
+          onClick={() => {
+            setIsOpen(false);
+          }}
+        >
+          끄기
+        </button>
+      </ReactModal>
+      <button
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
+        열기
+      </button>
+    </section>
+  );
 };
 
 export default Main;
