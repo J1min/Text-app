@@ -7,7 +7,10 @@ const Main: NextPage = () => {
 
   return (
     <section id={`main`}>
-      <button onClick={엄준식.open}>open modal</button>
+      <button className="bg-slate-600" onClick={엄준식.open}>
+        open modal
+      </button>
+
       <엄준식.Modal>
         <p>삭제하시겠습니까?</p>
         <div>

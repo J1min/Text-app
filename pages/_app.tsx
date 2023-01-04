@@ -5,6 +5,7 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "../styles/globalStyle";
 import { UserStyle } from "../styles/userStyle";
 import { RecoilRoot } from "recoil";
+import "@/styles/tailwind.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
