@@ -1,5 +1,5 @@
 module.exports = {
   images: {
-    domains: ["localhost"],
+    domains: ["cdn-icons-png.flaticon.com"],
   },
 };

@@ -14,8 +14,8 @@ export default function useModal() {
 
   return {
     Modal: isOpen
-      ? ({ children }: ModalProps) => (
-          <ReactModal isOpen={isOpen}>{children}</ReactModal>
+      ? ({ children, className }: ModalProps) => (
+          <ReactModal className={className} isOpen={isOpen}>{children}</ReactModal>
         )
       : () => null,
     open,
