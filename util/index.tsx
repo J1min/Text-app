@@ -1,7 +1,5 @@
-import { useRecoilState } from "recoil";
 import useLocalStoarge from "@/hooks/useLocalStoarge";
 import React from "react";
-import { windowState } from "@/context";
 import { WindowType } from "@/types/main/window.interface";
 
 const handleFontSizeChange = (
@@ -20,7 +18,7 @@ const handleBackgroundColor = (
   window: WindowType,
   setWindow: React.Dispatch<React.SetStateAction<WindowType>>,
 ) => {
-  const changedValue = { ...window, background: hex };
+  const changedValue = { ...window, background: hex.substring(1)  };
   useLocalStoarge("post", "windowOption", JSON.stringify(changedValue));
   setWindow(changedValue);
 };
@@ -30,7 +28,7 @@ const handleColor = (
   window: WindowType,
   setWindow: React.Dispatch<React.SetStateAction<WindowType>>,
 ) => {
-  const changedValue = { ...window, color: hex };
+  const changedValue = { ...window, color: hex.substring(1) };
   useLocalStoarge("post", "windowOption", JSON.stringify(changedValue));
   setWindow(changedValue);
 };
