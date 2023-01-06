@@ -8,6 +8,12 @@ import SettingButton from "@/components/main/SettingButton";
 import useLocalStoarge from "@/hooks/useLocalStoarge";
 import { WindowType } from "@/types/main/window.interface";
 import { windowState } from "@/context";
+import {
+  handleBackgroundColor,
+  handleColor,
+  handleContent,
+  handleFontSizeChange,
+} from "@/util";
 
 const Main: NextPage = () => {
   const ExampleModal = useModal();
@@ -22,30 +28,6 @@ const Main: NextPage = () => {
     }
   }, []);
 
-  const handleFontSizeChange = (_: Event, value: number | number[]) => {
-    const changedValue = { ...window, fontSize: value as number };
-    useLocalStoarge("post", "windowOption", JSON.stringify(changedValue));
-    setWindow(changedValue);
-  };
-
-  const handleBackgroundColor = ({ hex }: { hex: string }) => {
-    const changedValue = { ...window, background: hex };
-    useLocalStoarge("post", "windowOption", JSON.stringify(changedValue));
-    setWindow(changedValue);
-  };
-
-  const handleColor = ({ hex }: { hex: string }) => {
-    const changedValue = { ...window, color: hex };
-    useLocalStoarge("post", "windowOption", JSON.stringify(changedValue));
-    setWindow(changedValue);
-  };
-
-  const handleContent = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const changedValue = { ...window, content: event.target.value };
-    useLocalStoarge("post", "windowOption", JSON.stringify(changedValue));
-    setWindow(changedValue);
-  };
-
   return (
     <section id={`main`} className="p-12">
       <SettingButton open={ExampleModal.open} />
@@ -54,26 +36,37 @@ const Main: NextPage = () => {
         value={window.fontSize}
         aria-label="Default"
         valueLabelDisplay="auto"
-        onChange={handleFontSizeChange}
+        onChange={(_, value) => {
+          handleFontSizeChange(_, value, window, setWindow);
+        }}
         min={1}
         max={128}
       />
       <div className="flex gap-12">
         <div>
           <span className="text-6xl">text color</span>
-          <SketchPicker color={window.color} onChangeComplete={handleColor} />
+          <SketchPicker
+            color={window.color}
+            onChangeComplete={({ hex }) => {
+              handleColor(hex, window, setWindow);
+            }}
+          />
         </div>
         <div>
           <span className="text-6xl">background color</span>
           <SketchPicker
             color={window.background}
-            onChangeComplete={handleBackgroundColor}
+            onChangeComplete={({ hex }) => {
+              handleBackgroundColor(hex, window, setWindow);
+            }}
           />
         </div>
         <div>
           <span className="text-6xl">content</span>
           <textarea
-            onChange={handleContent}
+            onChange={(event) => {
+              handleContent(event, window, setWindow);
+            }}
             value={window.content}
             className="block resize-none p-8 text-4xl border-2 border-black"
           />
