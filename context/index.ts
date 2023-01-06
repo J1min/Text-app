@@ -1,6 +1,7 @@
 import { atom } from "recoil";
+import { WindowType } from "@/types/main/window.interface";
 
-export const textState = atom({
-  key: "textState",
-  default: "yarn",
+export const windowState = atom<WindowType>({
+  key: "windowState",
+  default: { fontSize: 16, background: "#ffffff", color: "#000000" },
 });

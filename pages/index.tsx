@@ -1,46 +1,74 @@
 import React from "react";
+import { SketchPicker } from "react-color";
 import type { NextPage } from "next";
+import { useRecoilState } from "recoil";
 import useModal from "@/hooks/useModal";
-import Image from "next/image";
+import SettingButton from "@/components/main/SettingButton";
+import { Slider } from "@mui/material";
+import useLocalStoarge from "@/hooks/useLocalStoarge";
+import { WindowType } from "@/types/main/window.interface";
+import { windowState } from "@/context";
 
 const Main: NextPage = () => {
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-    },
+  const FontSizeModal = useModal();
+  const [window, setWindow] = useRecoilState<WindowType>(windowState);
+
+  React.useEffect(() => {
+    const windowOption = useLocalStoarge("get", "windowOption");
+
+    if (windowOption) {
+      setWindow(JSON.parse(windowOption));
+    } else {
+      useLocalStoarge("post", "windowOption", JSON.stringify(window));
+    }
+
+    console.log(window);
+  }, []);
+
+  const handleFontSizeChange = (_: Event, value: number | number[]) => {
+    const changedValue = { ...window, fontSize: value as number };
+    useLocalStoarge("post", "windowOption", JSON.stringify(changedValue));
+    setWindow(changedValue);
   };
 
-  const FontSizeModal = useModal();
+  const handleBackgroundColor = ({ hex }: { hex: string }) => {
+    const changedValue = { ...window, background: hex };
+    useLocalStoarge("post", "windowOption", JSON.stringify(changedValue));
+    setWindow(changedValue);
+  };
+  const handleColor = ({ hex }: { hex: string }) => {
+    const changedValue = { ...window, color: hex };
+    useLocalStoarge("post", "windowOption", JSON.stringify(changedValue));
+    setWindow(changedValue);
+  };
 
   return (
-    <section id={`main`}>
-      <button
-        className="fixed bottom-10 right-10 bg-white border-2 border-black p-6 text-6xl leading-[0] rounded-full"
-        onClick={FontSizeModal.open}
-      >
-        <Image
-          src="https://cdn-icons-png.flaticon.com/512/97/97777.png"
-          alt="설정"
-          width={40}
-          height={40}
-        />
-      </button>
-
-      <FontSizeModal.Modal className="mx-auto mt-24 w-[80%] h-[40rem] bg-red-100 rounded-xl">
+    <section id={`main`} className="p-12">
+      <SettingButton open={FontSizeModal.open} />
+      {window.fontSize}
+      <Slider
+        value={window.fontSize}
+        aria-label="Default"
+        valueLabelDisplay="auto"
+        onChange={handleFontSizeChange}
+        min={1}
+        max={128}
+      />
+      textColor
+      <SketchPicker color={window.color} onChangeComplete={handleColor} />
+      background
+      <SketchPicker
+        color={window.background}
+        onChangeComplete={handleBackgroundColor}
+      />
+      <FontSizeModal.window className="mx-auto mt-24 w-[80%] h-[40rem] bg-red-100 rounded-xl">
         <div>
-          <p>삭제하시겠습니까?</p>
-          <input type="range" />
+          <p>글자 크기를 선택해주세요</p>
           <div>
             <button onClick={FontSizeModal.close}>OK</button>
-            <button onClick={FontSizeModal.close}>Cancle</button>
           </div>
         </div>
-      </FontSizeModal.Modal>
+      </FontSizeModal.window>
     </section>
   );
 };
