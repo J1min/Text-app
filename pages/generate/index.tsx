@@ -17,7 +17,6 @@ export default function Generate() {
     padding: 4rem;
   `;
 
-  console.log(router.query);
   return (
     <>
       <Head>
