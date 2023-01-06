@@ -16,7 +16,7 @@ export default function GenerateButton({ window }: { window: WindowType }) {
 
   return (
     <button
-      className="mt-12 px-8 py-4 bg-white border-2 border-black text-6xl rounded-lg cursor-pointer"
+      className="transition mt-12 px-8 py-4 bg-white border-2 border-black text-6xl rounded-lg cursor-pointer hover:bg-slate-700 hover:text-white"
       onClick={() => moveGenerate(window)}
     >
       생성

@@ -13,6 +13,7 @@ export default function Generate() {
     color: #${query.color};
     font-size: ${query.fontSize}px;
     height: 100vh;
+    padding: 4rem;
   `;
 
   console.log(router.query);
