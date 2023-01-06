@@ -1,7 +1,6 @@
 import React from "react";
 import type { NextPage } from "next";
 import { useRecoilState } from "recoil";
-import useModal from "@/hooks/useModal";
 import GenerateButton from "@/components/main/GenerateButton";
 import useLocalStoarge from "@/hooks/useLocalStoarge";
 import { WindowType } from "@/types/main/window.interface";
