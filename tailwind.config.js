@@ -5,11 +5,7 @@ module.exports = {
     "./components/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {
-      letterSpacing: {
-        0: "0",
-      },
-    },
+    extend: {},
   },
 
   plugins: [],
