@@ -15,7 +15,7 @@ export default function Content({ window }: { window: FontSizeRangeProps }) {
     <>
       <span className="text-6xl block mb-4">내용 미리보기</span>
       <StyledTextArea
-        className={"block w-full resize-none p-8 border-2 border-black"}
+        className={"block w-full resize-none p-8 border-2 border-black rounded-lg"}
         fontSize={window.state.fontSize}
         color={window.state.color}
         background={window.state.background}
