@@ -1,4 +1,10 @@
-기능 정의
+## 글자를 써서 전광판을 만들고 옆사람에게 보여주는 방식으로 말 없이 소통할 수 있는 웹사이트 입니다.
 
-1. 메인에서 font-size 조정 modal (font-size와 내용은 localStorage에 따로 저장)
-2. 버튼 누르면 전광판처럼 글씨가 돌아감
+사용 라이브러리
+1. tailwind
+2. styled-components
+3. recoil
+4. react-color
+5. @mui - silder
+
+localStoarge를 사용하여 내가 작성중인 내용이 반영구적으로 저장됩니다.
