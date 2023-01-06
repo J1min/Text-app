@@ -1,4 +1,5 @@
 import { WindowType } from "@/types/main/window.interface";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
@@ -17,5 +18,12 @@ export default function Generate() {
   `;
 
   console.log(router.query);
-  return <GenerateWrapper query={query}>{query.content}</GenerateWrapper>;
+  return (
+    <>
+      <Head>
+        <title>{query.content}</title>
+      </Head>
+      <GenerateWrapper query={query}>{query.content}</GenerateWrapper>;
+    </>
+  );
 }

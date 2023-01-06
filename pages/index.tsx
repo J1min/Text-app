@@ -8,6 +8,7 @@ import { windowState } from "@/context";
 import FontSizeRange from "@/components/main/FontSizeRange";
 import ColorPickers from "@/components/main/ColorPicker";
 import Content from "@/components/main/Content";
+import Head from "next/head";
 
 const Main: NextPage = () => {
   const [window, setWindow] = useRecoilState<WindowType>(windowState);
@@ -22,24 +23,29 @@ const Main: NextPage = () => {
   }, []);
 
   return (
-    <section id={`main`} className="p-12">
-      <FontSizeRange window={{ state: window, setState: setWindow }} />
+    <>
+      <Head>
+        <title>Text app</title>
+      </Head>
+      <section id={`main`} className="p-12">
+        <FontSizeRange window={{ state: window, setState: setWindow }} />
 
-      <div className="flex flex-wrap gap-12 items-center">
-        <ColorPickers
-          window={{
-            state: window,
-            setState: setWindow,
-          }}
-        />
-      </div>
+        <div className="flex flex-wrap gap-12 items-center">
+          <ColorPickers
+            window={{
+              state: window,
+              setState: setWindow,
+            }}
+          />
+        </div>
 
-      <div className="mt-12">
-        <Content window={{ state: window, setState: setWindow }} />
-      </div>
+        <div className="mt-12">
+          <Content window={{ state: window, setState: setWindow }} />
+        </div>
 
-      <GenerateButton window={window} />
-    </section>
+        <GenerateButton window={window} />
+      </section>
+    </>
   );
 };
 
