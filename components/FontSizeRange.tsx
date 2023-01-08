@@ -1,4 +1,4 @@
-import { FontSizeRangeProps } from "@/types/main/window.interface";
+import { FontSizeRangeProps } from "@/types/window.interface";
 import { handleFontSizeChange } from "@/util";
 import { Slider } from "@mui/material";
 import React from "react";

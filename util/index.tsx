@@ -1,6 +1,6 @@
 import useLocalStoarge from "@/hooks/useLocalStoarge";
 import React from "react";
-import { WindowType } from "@/types/main/window.interface";
+import { WindowType } from "@/types/window.interface";
 
 const handleFontSizeChange = (
   _: Event,
@@ -18,7 +18,7 @@ const handleBackgroundColor = (
   window: WindowType,
   setWindow: React.Dispatch<React.SetStateAction<WindowType>>,
 ) => {
-  const changedValue = { ...window, background: hex.substring(1)  };
+  const changedValue = { ...window, background: hex.substring(1) };
   useLocalStoarge("post", "windowOption", JSON.stringify(changedValue));
   setWindow(changedValue);
 };

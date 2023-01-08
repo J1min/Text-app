@@ -1,4 +1,4 @@
-import { WindowType } from "@/types/main/window.interface";
+import { WindowType } from "@/types/window.interface";
 import { useRouter } from "next/router";
 import React from "react";
 

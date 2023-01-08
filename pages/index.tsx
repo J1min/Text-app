@@ -1,17 +1,21 @@
 import React from "react";
 import type { NextPage } from "next";
 import { useRecoilState } from "recoil";
-import GenerateButton from "@/components/main/GenerateButton";
+import GenerateButton from "@/components/GenerateButton";
 import useLocalStoarge from "@/hooks/useLocalStoarge";
-import { WindowType } from "@/types/main/window.interface";
+import { WindowType } from "@/types/window.interface";
 import { windowState } from "@/context";
-import FontSizeRange from "@/components/main/FontSizeRange";
-import ColorPickers from "@/components/main/ColorPicker";
-import Content from "@/components/main/Content";
+import FontSizeRange from "@/components/FontSizeRange";
+import ColorPickers from "@/components/ColorPicker";
+import Content from "@/components/Content";
 import Head from "next/head";
 
 const Main: NextPage = () => {
   const [window, setWindow] = useRecoilState<WindowType>(windowState);
+  const propsWindow = {
+    state: window,
+    setState: setWindow,
+  };
 
   React.useEffect(() => {
     const windowOption = useLocalStoarge("get", "windowOption");
@@ -28,19 +32,14 @@ const Main: NextPage = () => {
         <title>Text app</title>
       </Head>
       <section id={`main`} className="p-12">
-        <FontSizeRange window={{ state: window, setState: setWindow }} />
+        <FontSizeRange window={propsWindow} />
 
         <div className="flex flex-wrap gap-12 items-center">
-          <ColorPickers
-            window={{
-              state: window,
-              setState: setWindow,
-            }}
-          />
+          <ColorPickers window={propsWindow} />
         </div>
 
         <div className="mt-12">
-          <Content window={{ state: window, setState: setWindow }} />
+          <Content window={propsWindow} />
         </div>
 
         <GenerateButton window={window} />

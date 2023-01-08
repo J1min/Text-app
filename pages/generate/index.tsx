@@ -1,4 +1,4 @@
-import { WindowType } from "@/types/main/window.interface";
+import { WindowType } from "@/types/window.interface";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
@@ -8,13 +8,15 @@ export default function Generate() {
   const router = useRouter();
   const query = router.query as unknown as WindowType;
 
-  type WrapperProps = Omit<WindowType, "content">;
-  const GenerateWrapper = styled.div<{ query: WrapperProps }>`
+  const GenerateWrapper = styled.div<{ query: Omit<WindowType, "content"> }>`
+    display: grid;
     background-color: #${query.background};
     color: #${query.color};
     font-size: ${query.fontSize}px;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     padding: 4rem;
+    word-break: break-all;
   `;
 
   return (

@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { WindowType } from "@/types/main/window.interface";
+import { WindowType } from "@/types/window.interface";
 
 export const windowState = atom<WindowType>({
   key: "windowState",

@@ -1,4 +1,4 @@
-import { FontSizeRangeProps } from "@/types/main/window.interface";
+import { FontSizeRangeProps } from "@/types/window.interface";
 import { handleBackgroundColor, handleColor } from "@/util";
 import React from "react";
 import { SketchPicker } from "react-color";
