@@ -10,8 +10,8 @@ export default function Generate() {
 
   const GenerateWrapper = styled.div<{ query: Omit<WindowType, "content"> }>`
     display: grid;
-    background-color: #${query.background.substring(0, 6)};
-    color: #${query.color.substring(0, 6)};
+    background-color: #${query.background};
+    color: #${query.color};
     font-size: ${query.fontSize}px;
     min-height: 100vh;
     height: auto;
