@@ -22,7 +22,7 @@ export default function Generate() {
       <Head>
         <title>{query.content}</title>
       </Head>
-      <GenerateWrapper query={query}>{query.content}</GenerateWrapper>;
+      <GenerateWrapper query={query}>{query.content}</GenerateWrapper>
     </>
   );
 }
